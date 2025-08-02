@@ -10,6 +10,12 @@ const schema = a.schema({
   Todo: a
     .model({
       content: a.string(),
+    })
+    .authorization((allow) => [allow.owner()]),
+
+  Location: a
+    .model({
+      id: a.id(),
       name: a.string(),
       lat: a.float(),
       lng: a.float(),
@@ -22,10 +28,6 @@ const schema = a.schema({
       wikiId: a.string(),
     })
     .authorization((allow) => [allow.owner()]),
-
-  Location: a.model({
-    id: a.id(),
-  }),
 });
 
 export type Schema = ClientSchema<typeof schema>;
