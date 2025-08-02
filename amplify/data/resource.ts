@@ -10,8 +10,22 @@ const schema = a.schema({
   Todo: a
     .model({
       content: a.string(),
+      name: a.string(),
+      lat: a.float(),
+      lng: a.float(),
+      shortName: a.string(),
+      thumbnail: a.string(),
+      type: a.enum(["food", "rec", "school"]),
+      active: a.boolean(),
+      userId: a.integer(),
+      yelpId: a.string(),
+      wikiId: a.string(),
     })
     .authorization((allow) => [allow.owner()]),
+
+  Location: a.model({
+    id: a.id(),
+  }),
 });
 
 export type Schema = ClientSchema<typeof schema>;
