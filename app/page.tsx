@@ -36,7 +36,7 @@ export default function App() {
   }
 
   useEffect(() => {
-    //listTodos();
+    listTodos();
     listLocations();
   }, []);
 
