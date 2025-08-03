@@ -19,6 +19,9 @@ function deleteToDo(id: string) {
 
 export default function App() {
   const [todos, setTodos] = useState<Array<Schema["Todo"]["type"]>>([]);
+  const [locations, setLocations] = useState<Array<Schema["Location"]["type"]>>(
+    []
+  );
 
   function listTodos() {
     client.models.Todo.observeQuery().subscribe({
@@ -26,8 +29,15 @@ export default function App() {
     });
   }
 
+  function listLocations() {
+    client.models.Location.observeQuery().subscribe({
+      next: (data) => setLocations([...data.items]),
+    });
+  }
+
   useEffect(() => {
-    listTodos();
+    //listTodos();
+    listLocations();
   }, []);
 
   function createTodo() {
@@ -40,13 +50,18 @@ export default function App() {
 
   return (
     <main>
-      <h1>{user.signInDetails?.loginId}'s todos</h1>
+      <h1>{user.signInDetails?.loginId}'s todos and all Locations</h1>
       <button onClick={createTodo}>+ new</button>
       <ul>
         {todos.map((todo) => (
           <li onClick={() => deleteToDo(todo.id)} key={todo.id}>
             {todo.content}
           </li>
+        ))}
+      </ul>
+      <ul>
+        {locations.map((location) => (
+          <li key={location.id}>{location.name}</li>
         ))}
       </ul>
       <div>
