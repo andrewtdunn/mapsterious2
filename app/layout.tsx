@@ -18,6 +18,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        <title>Mapsterious 2.0</title>
+      </head>
       <body className={inter.className}>
         <AuthenticatorWrapper>{children}</AuthenticatorWrapper>
       </body>
