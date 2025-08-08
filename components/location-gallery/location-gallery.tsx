@@ -1,7 +1,6 @@
 import React, { useState, FunctionComponent, MouseEvent } from "react";
 
-import "./location-gallery.css";
-
+import "./location-gallery.scss";
 interface Props {
   images?: string[];
   isExtended: boolean;
@@ -30,7 +29,7 @@ export const LocationGallery: FunctionComponent<Props> = ({
   return (
     <div className={`photo-gallery ${isExtended ? "extended" : ""}`}>
       <img
-        src={`/images/${images[currentImageIndex]}`}
+        src={`/data/images/${images[currentImageIndex]}`}
         alt="Real estate listing photo"
       />
 
