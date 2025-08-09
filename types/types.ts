@@ -1,6 +1,7 @@
 export interface MapLocation {
   id?: string;
   name: string;
+  type: string;
   thumbnail: string;
   lat: number;
   lng: number;

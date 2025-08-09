@@ -66,6 +66,17 @@
           position: absolute;
           opacity: 1;
           transition: opacity 0.2s ease-in-out;
+
+          color: white;
+          .restaurant {
+            background-color: #b88b2e;
+          }
+          .school {
+            background-color: #2e91b8;
+          }
+          .rec {
+            background-color: #83b82e;
+          }
         }
       }
     }

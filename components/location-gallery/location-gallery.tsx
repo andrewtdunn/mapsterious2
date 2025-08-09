@@ -4,12 +4,21 @@ import "./location-gallery.scss";
 interface Props {
   images?: string[];
   isExtended: boolean;
+  thumb?: string;
 }
 
 export const LocationGallery: FunctionComponent<Props> = ({
-  images = ["front.jpg", "bedroom.jpg", "back.jpg"],
+  images = [
+    "/data/images/front.jpg",
+    "/data/images/bedroom.jpg",
+    "/data/images/back.jpg",
+  ],
   isExtended = false,
+  thumb = "thumb.jpg",
 }) => {
+  images.unshift(
+    "https://s3-us-west-2.amazonaws.com/andrewdunn-pictures/images/" + thumb
+  );
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const handleBack = (event: MouseEvent<HTMLButtonElement>) => {
@@ -28,10 +37,7 @@ export const LocationGallery: FunctionComponent<Props> = ({
 
   return (
     <div className={`photo-gallery ${isExtended ? "extended" : ""}`}>
-      <img
-        src={`/data/images/${images[currentImageIndex]}`}
-        alt="Real estate listing photo"
-      />
+      <img src={images[currentImageIndex]} alt="Real estate listing photo" />
 
       <div className="gallery-navigation">
         <div className="nav-buttons">

@@ -8,6 +8,9 @@ import { LocationGallery } from "../location-gallery/location-gallery";
 
 import "./location-marker.scss";
 import { LocationListingDetails } from "../location-listing-details/LocationListingDetails";
+import RestaurantIcon from "@mui/icons-material/Restaurant";
+import SchoolIcon from "@mui/icons-material/School";
+import ParkIcon from "@mui/icons-material/Park";
 
 export const LocationMarker = ({ location }: { location: MapLocation }) => {
   const [clicked, setClicked] = useState(false);
@@ -25,9 +28,13 @@ export const LocationMarker = ({ location }: { location: MapLocation }) => {
             <span className="material-symbols-outlined">close</span>
           </button>
           <div className="image-container">
-            <LocationGallery isExtended={clicked} />
+            <LocationGallery isExtended={clicked} thumb={location.thumbnail} />
             <span className="icon">
-              <LocationIcon />
+              {location.type == "food" && (
+                <RestaurantIcon className="restaurant" />
+              )}
+              {location.type == "school" && <SchoolIcon className="school" />}
+              {location.type == "rec" && <ParkIcon className="rec" />}
             </span>
           </div>
           <LocationListingDetails />
